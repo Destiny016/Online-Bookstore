@@ -121,5 +121,39 @@
     </form>
 
     <div class="switch-form">
-      <span id="switch-msg">Already have an account? <a id=
+      <span id="switch-msg">Already have an account? <a id="toggle-link">Login here</a></span>
+    </div>
+  </div>
+
+  <script>
+    const signupForm = document.getElementById('signup-form');
+    const loginForm = document.getElementById('login-form');
+    const formTitle = document.getElementById('form-title');
+    const switchMsg = document.getElementById('switch-msg');
+    const toggleLink = document.getElementById('toggle-link');
+
+    toggleLink.addEventListener('click', () => {
+      if (signupForm.style.display !== 'none') {
+        // Switch to Login form
+        signupForm.style.display = 'none';
+        loginForm.style.display = 'flex';
+        formTitle.textContent = 'Login';
+        switchMsg.innerHTML = `Don't have an account? <a id="toggle-link">Sign Up here</a>`;
+
+      } else {
+        // Switch to Sign Up form
+        signupForm.style.display = 'flex';
+        loginForm.style.display = 'none';
+        formTitle.textContent = 'Sign Up';
+        switchMsg.innerHTML = `Already have an account? <a id="toggle-link">Login here</a>`;
+      }
+
+      // Re-attach event listener to the new toggle link element
+      document.getElementById('toggle-link').addEventListener('click', arguments.callee);
+    });
+  </script>
+
+</body>
+</html>
+
 

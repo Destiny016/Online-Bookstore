@@ -10,11 +10,12 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: #f9f9f9;
       margin: 0;
+      overflow-x: hidden;
     }
 
     nav {
       background-color: #6A4FB6;
-      padding: 1rem;
+      padding: 1rem 2rem;
       text-align: center;
     }
 
@@ -25,6 +26,7 @@
       display: flex;
       justify-content: center;
       gap: 2rem;
+      flex-wrap: wrap;
     }
 
     nav a {
@@ -44,11 +46,34 @@
       color: #4A357E;
     }
 
+    /* Search bar container */
+    .search-container {
+      max-width: 400px;
+      margin: 1rem auto 2rem auto;
+      text-align: center;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 10px 15px;
+      border-radius: 25px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    .search-container input:focus {
+      outline: none;
+      border-color: #6A4FB6;
+      box-shadow: 0 0 5px #6A4FB6;
+    }
+
     .book-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 20px;
-      padding: 2rem;
+      padding: 0 2rem 2rem 2rem;
       max-width: 1200px;
       margin: auto;
     }
@@ -61,6 +86,9 @@
       text-align: center;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
       padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .book img {
@@ -68,11 +96,13 @@
       height: 240px;
       object-fit: cover;
       margin-bottom: 1rem;
+      border-radius: 4px;
     }
 
     .book-title {
       font-weight: bold;
       margin-bottom: 0.5rem;
+      min-height: 48px; /* keep consistent height for titles */
     }
 
     .price {
@@ -87,10 +117,75 @@
       padding: 0.5rem 1rem;
       border-radius: 5px;
       cursor: pointer;
+      align-self: center;
+      transition: background-color 0.3s ease;
     }
 
     .book button:hover {
       background-color: #503A99;
+    }
+
+    /* Cart sidebar styles */
+    .cart {
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      width: 280px;
+      max-height: 80vh;
+      background: white;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 10px #ccc;
+      padding: 15px;
+      overflow-y: auto;
+      border-radius: 8px;
+      z-index: 1000;
+    }
+
+    .cart h2 {
+      font-size: 1.2rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+      margin-top: 0;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .cart-total {
+      font-weight: bold;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+      margin-top: 10px;
+      text-align: right;
+    }
+
+    .cart button {
+      background: none;
+      border: none;
+      color: red;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .cart {
+        position: static;
+        width: 100%;
+        max-height: none;
+        margin: 1rem auto;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+      }
+
+      body {
+        padding-bottom: 200px; /* Make room for cart if needed */
+      }
     }
   </style>
 </head>
@@ -108,87 +203,159 @@
 
   <h1>Browse More Books</h1>
 
-  <section class="book-grid">
-    <!-- Book 1 -->
-    <div class="book">
-      <img src="images/browse/book1.jpg" alt="Book 1">
-      <div class="book-title">The Long Game</div>
-      <div class="price">$11.99</div>
-      <button>Add to Cart</button>
-    </div>
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search books..." aria-label="Search books" />
+  </div>
 
-    <!-- Book 2 -->
-    <div class="book">
-      <img src="images/browse/book2.jpg" alt="Book 2">
-      <div class="book-title">Children Of Blood and Bone</div>
-      <div class="price">$13.50</div>
-      <button>Add to Cart</button>
-    </div>
-
-    <!-- Book 3 -->
-    <div class="book">
-      <img src="images/browse/book3.jpg" alt="Book 3">
-      <div class="book-title">Mixed Signals</div>
-      <div class="price">$9.99</div>
-      <button>Add to Cart</button>
-    </div>
-
-    <!-- Book 4 -->
-    <div class="book">
-      <img src="images/browse/book4.jpg" alt="Book 4">
-      <div class="book-title">These Fragil Graces This Fugitive Heart</div>
-      <div class="price">$12.49</div>
-      <button>Add to Cart</button>
-    </div>
-
-    <!-- Book 5 -->
-    <div class="book">
-      <img src="images/browse/book5.jpg" alt="Book 5">
-      <div class="book-title">This Was Our Pact</div>
-      <div class="price">$15.00</div>
-      <button>Add to Cart</button>
-    </div>
-
-    <!-- Book 6 -->
-    <div class="book">
-      <img src="images/browse/book6.jpg" alt="Book 6">
-      <div class="book-title">The Age of Atlantic Revoution</div>
-      <div class="price">$14.25</div>
-      <button>Add to Cart</button>
-    </div>
-
-    <!-- Book 7 -->
-    <div class="book">
-      <img src="images/browse/book7.jpg" alt="Book 7">
-      <div class="book-title">All That She Carried</div>
-      <div class="price">$10.99</div>
-      <button>Add to Cart</button>
-    </div>
-
-    <!-- Book 8 -->
-    <div class="book">
-      <img src="images/browse/book8.jpg" alt="Book 8">
-      <div class="book-title">Beatrice's Last Smile</div>
-      <div class="price">$13.75</div>
-      <button>Add to Cart</button>
-    </div>
-
-    <!-- Book 9 -->
-    <div class="book">
-      <img src="images/browse/book9.jpg" alt="Book 9">
-      <div class="book-title">The Girl On the Train</div>
-      <div class="price">$16.30</div>
-      <button>Add to Cart</button>
-    </div>
-
-    <!-- Book 10 -->
-    <div class="book">
-      <img src="images/browse/book10.jpg" alt="Book 10">
-      <div class="book-title">Lord of the Flies</div>
-      <div class="price">$8.49</div>
-      <button>Add to Cart</button>
-    </div>
+  <section class="book-grid" id="bookGrid">
+    <!-- Books injected by JS -->
   </section>
 
+  <aside class="cart" id="cart">
+    <h2>Your Cart</h2>
+    <div id="cartItems">Cart is empty.</div>
+    <div class="cart-total" id="cartTotal"></div>
+  </aside>
+
+  <script>
+    // Book data, matching your existing browse.html data
+    const books = [
+      { id: 1, title: "The Long Game", price: 11.99, img: "images/browse/book1.jpg" },
+      { id: 2, title: "Children Of Blood and Bone", price: 13.50, img: "images/browse/book2.jpg" },
+      { id: 3, title: "Mixed Signals", price: 9.99, img: "images/browse/book3.jpg" },
+      { id: 4, title: "These Fragil Graces This Fugitive Heart", price: 12.49, img: "images/browse/book4.jpg" },
+      { id: 5, title: "This Was Our Pact", price: 15.00, img: "images/browse/book5.jpg" },
+      { id: 6, title: "The Age of Atlantic Revoution", price: 14.25, img: "images/browse/book6.jpg" },
+      { id: 7, title: "All That She Carried", price: 10.99, img: "images/browse/book7.jpg" },
+      { id: 8, title: "Beatrice's Last Smile", price: 13.75, img: "images/browse/book8.jpg" },
+      { id: 9, title: "The Girl On the Train", price: 16.30, img: "images/browse/book9.jpg" },
+      { id: 10, title: "Lord of the Flies", price: 8.49, img: "images/browse/book10.jpg" }
+    ];
+
+    const cart = [];
+
+    const bookGrid = document.getElementById('bookGrid');
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    const searchInput = document.getElementById('searchInput');
+
+    // Render books to grid, accepts optional filter string
+    function renderBooks(filter = '') {
+      bookGrid.innerHTML = ''; // Clear existing
+
+      // Filter books by title (case insensitive)
+      const filteredBooks = books.filter(book =>
+        book.title.toLowerCase().includes(filter.toLowerCase())
+      );
+
+      if (filteredBooks.length === 0) {
+        const noResult = document.createElement('p');
+        noResult.textContent = 'No books found.';
+        noResult.style.textAlign = 'center';
+        noResult.style.gridColumn = '1 / -1';
+        bookGrid.appendChild(noResult);
+        return;
+      }
+
+      filteredBooks.forEach(book => {
+        const bookDiv = document.createElement('div');
+        bookDiv.className = 'book';
+
+        const img = document.createElement('img');
+        img.src = book.img;
+        img.alt = book.title;
+
+        const title = document.createElement('div');
+        title.className = 'book-title';
+        title.textContent = book.title;
+
+        const price = document.createElement('div');
+        price.className = 'price';
+        price.textContent = `$${book.price.toFixed(2)}`;
+
+        const btn = document.createElement('button');
+        btn.textContent = 'Add to Cart';
+        btn.onclick = () => addToCart(book.id);
+
+        bookDiv.appendChild(img);
+        bookDiv.appendChild(title);
+        bookDiv.appendChild(price);
+        bookDiv.appendChild(btn);
+
+        bookGrid.appendChild(bookDiv);
+      });
+    }
+
+    // Add book to cart
+    function addToCart(bookId) {
+      const book = books.find(b => b.id === bookId);
+      if (!book) return;
+
+      const cartItem = cart.find(item => item.id === bookId);
+      if (cartItem) {
+        cartItem.quantity++;
+      } else {
+        cart.push({ ...book, quantity: 1 });
+      }
+      renderCart();
+    }
+
+    // Remove book from cart
+    function removeFromCart(bookId) {
+      const index = cart.findIndex(item => item.id === bookId);
+      if (index > -1) {
+        cart.splice(index, 1);
+      }
+      renderCart();
+    }
+
+    // Render cart contents
+    function renderCart() {
+      if (cart.length === 0) {
+        cartItems.textContent = 'Cart is empty.';
+        cartTotal.textContent = '';
+        return;
+      }
+
+      cartItems.innerHTML = '';
+      let total = 0;
+
+      cart.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+
+        const name = document.createElement('span');
+        name.textContent = `${item.title} x${item.quantity}`;
+
+        const price = document.createElement('span');
+        price.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
+
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = '✕';
+        removeBtn.title = 'Remove from cart';
+        removeBtn.onclick = () => removeFromCart(item.id);
+
+        itemDiv.appendChild(name);
+        itemDiv.appendChild(price);
+        itemDiv.appendChild(removeBtn);
+
+        cartItems.appendChild(itemDiv);
+
+        total += item.price * item.quantity;
+      });
+
+      cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    // Search input listener
+    searchInput.addEventListener('input', e => {
+      renderBooks(e.target.value);
+    });
+
+    // Initial render
+    renderBooks();
+  </script>
 </body>
 </html>
+
+

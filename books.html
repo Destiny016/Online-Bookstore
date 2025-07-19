@@ -3,80 +3,130 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bookstore - New Books</title>
+  <title>Book Nest - New Books</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* Quick styling */
     body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0; background: #f9f9f9;
-    }
-    nav {
-      background: #8b5cf6;
-      padding: 1rem;
-      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      overflow-x: hidden;
       display: flex;
-      gap: 1rem;
+      flex-direction: column;
+      min-height: 100vh;
     }
+
+    nav {
+      background: #6A4FB6;
+      padding: 1rem 2rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
     }
+
+    nav a.active,
     nav a:hover {
       text-decoration: underline;
     }
+
+    main {
+      flex: 1 0 auto;
+      max-width: 1200px;
+      margin: 1.5rem auto 2rem;
+      padding: 0 1rem;
+      width: 100%;
+    }
+
     h1 {
       text-align: center;
-      margin: 1rem 0;
+      color: #4A357E;
+      margin-bottom: 1rem;
     }
+
+    /* Search bar styles */
+    #searchBar {
+      display: block;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto 2rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border: 2px solid #6A4FB6;
+      border-radius: 6px;
+      outline-offset: 2px;
+      transition: border-color 0.3s;
+    }
+
+    #searchBar:focus {
+      border-color: #503A99;
+    }
+
     .book-gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 1rem;
-      padding: 1rem 2rem;
-      max-width: 1000px;
-      margin: auto;
     }
+
     .book-card {
       background: white;
-      border-radius: 5px;
-      box-shadow: 0 0 5px #ccc;
-      padding: 10px;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
     .book-card img {
-      width: 150px;
-      height: 220px;
+      width: 140px;
+      height: 210px;
       object-fit: cover;
       margin-bottom: 10px;
     }
+
     .book-title {
       font-weight: bold;
-      margin-bottom: 5px;
       text-align: center;
+      margin-bottom: 5px;
     }
+
     .book-price {
+      color: #444;
       margin-bottom: 10px;
-      color: #4a4a4a;
     }
-    button.add-cart {
-      background: #8b5cf6;
-      border: none;
+
+    .add-cart {
+      background: #6A4FB6;
       color: white;
       padding: 8px 12px;
-      cursor: pointer;
+      border: none;
       border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.95rem;
       transition: background 0.3s;
     }
-    button.add-cart:hover {
-      background: #6d44d9;
+
+    .add-cart:hover {
+      background: #543aa3;
     }
+
     .cart {
       position: fixed;
-      top: 60px;
+      top: 70px;
       right: 20px;
       width: 280px;
       max-height: 80vh;
@@ -86,18 +136,23 @@
       padding: 15px;
       overflow-y: auto;
       border-radius: 8px;
+      z-index: 100;
     }
+
     .cart h2 {
-      margin-top: 0;
       font-size: 1.2rem;
       border-bottom: 1px solid #ddd;
       padding-bottom: 5px;
+      margin-top: 0;
     }
+
     .cart-item {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 8px;
+      align-items: center;
+      margin-bottom: 10px;
     }
+
     .cart-total {
       font-weight: bold;
       border-top: 1px solid #ddd;
@@ -105,27 +160,60 @@
       margin-top: 10px;
       text-align: right;
     }
+
+    .cart button {
+      background: none;
+      border: none;
+      color: red;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      background: #6A4FB6;
+      color: white;
+      text-align: center;
+      padding: 1rem 2rem;
+      flex-shrink: 0;
+    }
   </style>
 </head>
 <body>
+
   <nav>
-    <a href="index.html">Home</a>
-    <a href="genres.html">Genres</a>
-    <a href="books.html">New Books</a>
-    <a href="login.html">Sign Up / Login</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="genres.html">Genres</a></li>
+      <li><a href="books.html" class="active">New Books</a></li>
+      <li><a href="browse.html">Browse</a></li>
+      <li><a href="login.html">Sign Up / Login</a></li>
+    </ul>
   </nav>
 
-  <h1>New Books</h1>
+  <main>
+    <h1>📚 New Books</h1>
 
-  <section class="book-gallery" id="bookGallery">
-    <!-- Book cards will be injected here by JS -->
-  </section>
+    <input
+      type="search"
+      id="searchBar"
+      placeholder="Search books by title..."
+      aria-label="Search books"
+    />
+
+    <section class="book-gallery" id="bookGallery">
+      <!-- Book cards will be injected by JS -->
+    </section>
+  </main>
 
   <aside class="cart" id="cart">
     <h2>Your Cart</h2>
     <div id="cartItems">Cart is empty.</div>
     <div class="cart-total" id="cartTotal"></div>
   </aside>
+
+  <footer>
+    &copy; 2025 Book Nest. All rights reserved.
+  </footer>
 
   <script>
     const books = [
@@ -156,9 +244,21 @@
     const bookGallery = document.getElementById('bookGallery');
     const cartItems = document.getElementById('cartItems');
     const cartTotal = document.getElementById('cartTotal');
+    const searchBar = document.getElementById('searchBar');
 
-    function renderBooks() {
-      books.forEach(book => {
+    // Render all books initially
+    function renderBooks(filter = '') {
+      bookGallery.innerHTML = '';
+      const filteredBooks = books.filter(book =>
+        book.title.toLowerCase().includes(filter.toLowerCase())
+      );
+
+      if (filteredBooks.length === 0) {
+        bookGallery.innerHTML = '<p style="text-align:center; width:100%;">No books found.</p>';
+        return;
+      }
+
+      filteredBooks.forEach(book => {
         const bookCard = document.createElement('div');
         bookCard.className = 'book-card';
 
@@ -192,12 +292,11 @@
       const book = books.find(b => b.id === bookId);
       if (!book) return;
 
-      // Check if book is already in cart
       const cartItem = cart.find(item => item.id === bookId);
       if (cartItem) {
         cartItem.quantity++;
       } else {
-        cart.push({...book, quantity: 1});
+        cart.push({ ...book, quantity: 1 });
       }
       renderCart();
     }
@@ -219,6 +318,7 @@
 
       cartItems.innerHTML = '';
       let total = 0;
+
       cart.forEach(item => {
         const itemDiv = document.createElement('div');
         itemDiv.className = 'cart-item';
@@ -230,8 +330,8 @@
         price.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
 
         const removeBtn = document.createElement('button');
-        removeBtn.textContent = 'Remove';
-        removeBtn.style.marginLeft = '10px';
+        removeBtn.textContent = '✕';
+        removeBtn.title = 'Remove from cart';
         removeBtn.onclick = () => removeFromCart(item.id);
 
         itemDiv.appendChild(name);
@@ -246,9 +346,18 @@
       cartTotal.textContent = `Total: $${total.toFixed(2)}`;
     }
 
+    // Event listener for search input
+    searchBar.addEventListener('input', e => {
+      renderBooks(e.target.value);
+    });
+
+    // Initial render
     renderBooks();
   </script>
 </body>
 </html>
+
+
+
 
 

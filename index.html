@@ -6,11 +6,11 @@
   <title>Book Nest - Home</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* Inline CSS for layout preview - can move to styles.css */
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #fdfdfd;
+      overflow-x: hidden;
     }
 
     nav {
@@ -24,6 +24,7 @@
       padding: 0;
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 2rem;
     }
 
@@ -31,6 +32,7 @@
       text-decoration: none;
       color: white;
       font-weight: bold;
+      font-size: 1.05rem;
     }
 
     nav a.active,
@@ -45,7 +47,7 @@
 
     .hero-image {
       width: 100%;
-      max-height: 400px;
+      max-height: 380px;
       object-fit: cover;
     }
 
@@ -59,12 +61,23 @@
       font-size: 1.2rem;
       color: #555;
       margin-top: 0.5rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .quote {
+      font-style: italic;
+      color: #6A4FB6;
+      font-size: 1.1rem;
+      margin: 0 1rem 1.5rem 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .cta {
       text-align: center;
       margin-top: 2rem;
+      margin-bottom: 3rem;
     }
 
     .cta a {
@@ -74,10 +87,26 @@
       text-decoration: none;
       border-radius: 5px;
       font-size: 1.1rem;
+      transition: background-color 0.3s ease;
     }
 
     .cta a:hover {
       background-color: #372760;
+    }
+
+    @media (max-width: 600px) {
+      .site-title {
+        font-size: 2.2rem;
+      }
+
+      .site-tagline {
+        font-size: 1rem;
+      }
+
+      .quote {
+        font-size: 1rem;
+        margin: 0 1rem 1.2rem 1rem;
+      }
     }
   </style>
 </head>
@@ -87,7 +116,8 @@
     <ul>
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="genres.html">Genres</a></li>
-      <li><a href="books.html">Books</a></li>
+      <li><a href="books.html">New Books</a></li>
+      <li><a href="browse.html">Browse</a></li>
       <li><a href="login.html">Sign Up / Login</a></li>
     </ul>
   </nav>
@@ -96,9 +126,16 @@
     <img src="images/library-banner.jpg" alt="Library Banner" class="hero-image" />
     <h1 class="site-title">📚 Book Nest</h1>
     <p class="site-tagline">Your cozy place for discovering new stories.</p>
+    <p class="quote">“A room without books is like a body without a soul.” – Marcus Tullius Cicero</p>
   </header>
 
   <section class="cta">
-    <a href="browse.html">Browse
+    <a href="browse.html">Browse Our Collection</a>
+  </section>
+
+</body>
+</html>
+
+
 
 
