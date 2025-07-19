@@ -4,72 +4,67 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   background-color: #f9f9f9;
-}
-
-/* Header */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  color: #333;
+  line-height: 1.6;
+  max-width: 1200px;
+  margin: auto;
   padding: 20px;
-  background-color: white;
-  border-bottom: 1px solid #ddd;
-}
-.logo h1 {
-  font-family: 'Georgia', serif;
-}
-nav a {
-  margin: 0 15px;
-  text-decoration: none;
-  color: #444;
-  font-weight: bold;
 }
 
-/* Banner */
-.banner {
-  position: relative;
-  text-align: center;
-}
-.banner img {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-}
-.banner-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 15px 25px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  font-size: 20px;
-}
-
-/* Main Sections */
-.main-sections {
-  display: flex;
-  justify-content: space-around;
-  margin: 40px 20px;
-}
-.section {
-  text-align: center;
-}
-.section img {
-  width: 200px;
-  height: 150px;
-  object-fit: cover;
+/* Navigation */
+nav {
+  background-color: #1e3799;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #eee;
-  margin-top: 40px;
+nav ul {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  padding: 10px 0;
 }
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  background-color: #4a69bd;
+}
+
+/* Hero Section */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+/* Features / Home */
+.features {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.features > div {
+

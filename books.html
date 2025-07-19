@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bookstore - New Books</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Quick styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0; background: #f9f9f9;
+    }
+    nav {
+      background: #8b5cf6;
+      padding: 1rem;
+      color: white;
+      display: flex;
+      gap: 1rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    h1 {
+      text-align: center;
+      margin: 1rem 0;
+    }
+    .book-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+      gap: 1rem;
+      padding: 1rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .book-card {
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #ccc;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .book-card img {
+      width: 150px;
+      height: 220px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+    .book-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+    .book-price {
+      margin-bottom: 10px;
+      color: #4a4a4a;
+    }
+    button.add-cart {
+      background: #8b5cf6;
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    button.add-cart:hover {
+      background: #6d44d9;
+    }
+    .cart {
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      width: 280px;
+      max-height: 80vh;
+      background: white;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 10px #ccc;
+      padding: 15px;
+      overflow-y: auto;
+      border-radius: 8px;
+    }
+    .cart h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .cart-total {
+      font-weight: bold;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+      margin-top: 10px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="genres.html">Genres</a>
+    <a href="books.html">New Books</a>
+    <a href="login.html">Sign Up / Login</a>
+  </nav>
+
+  <h1>New Books</h1>
+
+  <section class="book-gallery" id="bookGallery">
+    <!-- Book cards will be injected here by JS -->
+  </section>
+
+  <aside class="cart" id="cart">
+    <h2>Your Cart</h2>
+    <div id="cartItems">Cart is empty.</div>
+    <div class="cart-total" id="cartTotal"></div>
+  </aside>
+
+  <script>
+    const books = [
+      { id: 1, title: "The Beloved Girls", price: 15.99 },
+      { id: 2, title: "Harry Potter and The Cursed Child", price: 12.50 },
+      { id: 3, title: "Everything Is Not Peachey", price: 9.99 },
+      { id: 4, title: "James and the Giant Peach", price: 20.00 },
+      { id: 5, title: "The Great Gatsby", price: 8.75 },
+      { id: 6, title: "The Goldfinch", price: 14.00 },
+      { id: 7, title: "1984", price: 17.25 },
+      { id: 8, title: "The Hunger Games", price: 13.50 },
+      { id: 9, title: "The Shadow Cell", price: 7.99 },
+      { id: 10, title: "The Hobbit", price: 19.95 },
+      { id: 11, title: "The Science of Friendship", price: 11.49 },
+      { id: 12, title: "The Shadows of Summer", price: 16.00 },
+      { id: 13, title: "What's Left of Me", price: 18.75 },
+      { id: 14, title: "The Fate of Fausto", price: 10.00 },
+      { id: 15, title: "The God of The Woods", price: 14.99 },
+      { id: 16, title: "The Creative Code", price: 21.00 },
+      { id: 17, title: "The Color Purple", price: 22.50 },
+      { id: 18, title: "Ramona Blue", price: 13.99 },
+      { id: 19, title: "Pride and Prejudice", price: 9.49 },
+      { id: 20, title: "The Kiss Quotient", price: 12.75 }
+    ];
+
+    const cart = [];
+
+    const bookGallery = document.getElementById('bookGallery');
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+
+    function renderBooks() {
+      books.forEach(book => {
+        const bookCard = document.createElement('div');
+        bookCard.className = 'book-card';
+
+        const img = document.createElement('img');
+        img.src = `images/books/book${book.id}/cover.jpg`;
+        img.alt = book.title;
+
+        const title = document.createElement('div');
+        title.className = 'book-title';
+        title.textContent = book.title;
+
+        const price = document.createElement('div');
+        price.className = 'book-price';
+        price.textContent = `$${book.price.toFixed(2)}`;
+
+        const btn = document.createElement('button');
+        btn.className = 'add-cart';
+        btn.textContent = 'Add to Cart';
+        btn.onclick = () => addToCart(book.id);
+
+        bookCard.appendChild(img);
+        bookCard.appendChild(title);
+        bookCard.appendChild(price);
+        bookCard.appendChild(btn);
+
+        bookGallery.appendChild(bookCard);
+      });
+    }
+
+    function addToCart(bookId) {
+      const book = books.find(b => b.id === bookId);
+      if (!book) return;
+
+      // Check if book is already in cart
+      const cartItem = cart.find(item => item.id === bookId);
+      if (cartItem) {
+        cartItem.quantity++;
+      } else {
+        cart.push({...book, quantity: 1});
+      }
+      renderCart();
+    }
+
+    function removeFromCart(bookId) {
+      const index = cart.findIndex(item => item.id === bookId);
+      if (index > -1) {
+        cart.splice(index, 1);
+      }
+      renderCart();
+    }
+
+    function renderCart() {
+      if (cart.length === 0) {
+        cartItems.textContent = 'Cart is empty.';
+        cartTotal.textContent = '';
+        return;
+      }
+
+      cartItems.innerHTML = '';
+      let total = 0;
+      cart.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+
+        const name = document.createElement('span');
+        name.textContent = `${item.title} x${item.quantity}`;
+
+        const price = document.createElement('span');
+        price.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
+
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'Remove';
+        removeBtn.style.marginLeft = '10px';
+        removeBtn.onclick = () => removeFromCart(item.id);
+
+        itemDiv.appendChild(name);
+        itemDiv.appendChild(price);
+        itemDiv.appendChild(removeBtn);
+
+        cartItems.appendChild(itemDiv);
+
+        total += item.price * item.quantity;
+      });
+
+      cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    renderBooks();
+  </script>
+</body>
+</html>
+
+

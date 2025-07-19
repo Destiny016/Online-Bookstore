@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Genres</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background: #8b5cf6;
+      padding: 1rem;
+      color: white;
+      display: flex;
+      gap: 1rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    h1 {
+      text-align: center;
+      margin: 1rem 0;
+    }
+    .genre-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      padding: 1rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .genre-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+    .genre-card:hover {
+      transform: scale(1.03);
+    }
+    .genre-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .genre-name {
+      padding: 0.75rem;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="genres.html">Genres</a>
+    <a href="books.html">New Books</a>
+    <a href="login.html">Sign Up / Login</a>
+  </nav>
+
+  <h1>Browse by Genre</h1>
+
+  <section class="genre-grid">
+    <div class="genre-card">
+      <img src="images/genres/mystery.jpg" alt="Mystery">
+      <div class="genre-name">Mystery</div>
+    </div>
+    <div class="genre-card">
+      <img src="images/genres/romance.jpg" alt="Romance">
+      <div class="genre-name">Romance</div>
+    </div>
+    <div class="genre-card">
+      <img src="images/genres/scifi.jpg" alt="Science Fiction">
+      <div class="genre-name">Sci-Fi</div>
+    </div>
+    <div class="genre-card">
+      <img src="images/genres/fantasy.jpg" alt="Fantasy">
+      <div class="genre-name">Fantasy</div>
+    </div>
+    <div class="genre-card">
+      <img src="images/genres/nonfiction.jpg" alt="Non-fiction">
+      <div class="genre-name">Non-Fiction</div>
+    </div>
+    <div class="genre-card">
+      <img src="images/genres/history.jpg" alt="History">
+      <div class="genre-name">History</div>
+    </div>
+    <div class="genre-card">
+      <img src="images/genres/thriller.jpg" alt="Thriller">
+      <div class="genre-name">Thriller</div>
+    </div>
+    <div class="genre-card">
+      <img src="images/genres/youngadult.jpg" alt="Young Adult">
+      <div class="genre-name">Young Adult</div>
+    </div>
+  </section>
+</body>
+</html>
+

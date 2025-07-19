@@ -2,51 +2,103 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Book Nest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book Nest - Home</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Inline CSS for layout preview - can move to styles.css */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fdfdfd;
+    }
+
+    nav {
+      background-color: #6A4FB6;
+      padding: 1rem 2rem;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+
+    nav a.active,
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      text-align: center;
+      padding-bottom: 2rem;
+    }
+
+    .hero-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+    }
+
+    .site-title {
+      font-size: 3rem;
+      color: #4A357E;
+      margin-top: 1rem;
+    }
+
+    .site-tagline {
+      font-size: 1.2rem;
+      color: #555;
+      margin-top: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .cta a {
+      background-color: #4A357E;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+    }
+
+    .cta a:hover {
+      background-color: #372760;
+    }
+  </style>
 </head>
 <body>
-  <!-- Header -->
+
+  <nav>
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="genres.html">Genres</a></li>
+      <li><a href="books.html">Books</a></li>
+      <li><a href="login.html">Sign Up / Login</a></li>
+    </ul>
+  </nav>
+
   <header>
-    <div class="logo">
-      <h1>Book Nest 📖</h1>
-    </div>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Cart</a>
-      <a href="#">About</a>
-      <a href="#">Services</a>
-      <a href="#">Contact</a>
-    </nav>
+    <img src="images/library-banner.jpg" alt="Library Banner" class="hero-image" />
+    <h1 class="site-title">📚 Book Nest</h1>
+    <p class="site-tagline">Your cozy place for discovering new stories.</p>
   </header>
 
-  <!-- Banner -->
-  <section class="banner">
-    <img src="images/library-banner.jpg" alt="Bookshelf banner">
-    <div class="banner-text">
-      <h2>Thousands of Books, across all Genres,<br>at your fingertips!</h2>
-    </div>
-  </section>
+  <section class="cta">
+    <a href="browse.html">Browse
 
-  <!-- Main Sections -->
-  <section class="main-sections">
-    <div class="section">
-      <img src="images/genres.jpg" alt="Genres">
-      <h3>GENRES</h3>
-    </div>
-    <div class="section">
-      <img src="images/login.jpg" alt="Login">
-      <h3>SIGN UP/ LOGIN</h3>
-    </div>
-    <div class="section">
-      <img src="images/new-books.jpg" alt="New Books">
-      <h3>NEW BOOKS</h3>
-    </div>
-  </section>
 
-  <footer>
-    <p>&copy; 2025 Book Nest. All rights reserved.</p>
-  </footer>
-</body>
-</html>

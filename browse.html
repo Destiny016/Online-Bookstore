@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Browse Books - Book Nest</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+    }
+
+    nav {
+      background-color: #6A4FB6;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover,
+    nav a.active {
+      text-decoration: underline;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 1rem;
+      color: #4A357E;
+    }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .book {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      padding: 1rem;
+    }
+
+    .book img {
+      max-width: 100%;
+      height: 240px;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    .book-title {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .price {
+      color: #6A4FB6;
+      margin-bottom: 1rem;
+    }
+
+    .book button {
+      background-color: #6A4FB6;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .book button:hover {
+      background-color: #503A99;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="genres.html">Genres</a></li>
+      <li><a href="books.html">Books</a></li>
+      <li><a href="browse.html" class="active">Browse</a></li>
+      <li><a href="login.html">Sign Up / Login</a></li>
+    </ul>
+  </nav>
+
+  <h1>Browse More Books</h1>
+
+  <section class="book-grid">
+    <!-- Book 1 -->
+    <div class="book">
+      <img src="images/browse/book1.jpg" alt="Book 1">
+      <div class="book-title">The Long Game</div>
+      <div class="price">$11.99</div>
+      <button>Add to Cart</button>
+    </div>
+
+    <!-- Book 2 -->
+    <div class="book">
+      <img src="images/browse/book2.jpg" alt="Book 2">
+      <div class="book-title">Children Of Blood and Bone</div>
+      <div class="price">$13.50</div>
+      <button>Add to Cart</button>
+    </div>
+
+    <!-- Book 3 -->
+    <div class="book">
+      <img src="images/browse/book3.jpg" alt="Book 3">
+      <div class="book-title">Mixed Signals</div>
+      <div class="price">$9.99</div>
+      <button>Add to Cart</button>
+    </div>
+
+    <!-- Book 4 -->
+    <div class="book">
+      <img src="images/browse/book4.jpg" alt="Book 4">
+      <div class="book-title">These Fragil Graces This Fugitive Heart</div>
+      <div class="price">$12.49</div>
+      <button>Add to Cart</button>
+    </div>
+
+    <!-- Book 5 -->
+    <div class="book">
+      <img src="images/browse/book5.jpg" alt="Book 5">
+      <div class="book-title">This Was Our Pact</div>
+      <div class="price">$15.00</div>
+      <button>Add to Cart</button>
+    </div>
+
+    <!-- Book 6 -->
+    <div class="book">
+      <img src="images/browse/book6.jpg" alt="Book 6">
+      <div class="book-title">The Age of Atlantic Revoution</div>
+      <div class="price">$14.25</div>
+      <button>Add to Cart</button>
+    </div>
+
+    <!-- Book 7 -->
+    <div class="book">
+      <img src="images/browse/book7.jpg" alt="Book 7">
+      <div class="book-title">All That She Carried</div>
+      <div class="price">$10.99</div>
+      <button>Add to Cart</button>
+    </div>
+
+    <!-- Book 8 -->
+    <div class="book">
+      <img src="images/browse/book8.jpg" alt="Book 8">
+      <div class="book-title">Beatrice's Last Smile</div>
+      <div class="price">$13.75</div>
+      <button>Add to Cart</button>
+    </div>
+
+    <!-- Book 9 -->
+    <div class="book">
+      <img src="images/browse/book9.jpg" alt="Book 9">
+      <div class="book-title">The Girl On the Train</div>
+      <div class="price">$16.30</div>
+      <button>Add to Cart</button>
+    </div>
+
+    <!-- Book 10 -->
+    <div class="book">
+      <img src="images/browse/book10.jpg" alt="Book 10">
+      <div class="book-title">Lord of the Flies</div>
+      <div class="price">$8.49</div>
+      <button>Add to Cart</button>
+    </div>
+  </section>
+
+</body>
+</html>
