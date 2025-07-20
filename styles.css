@@ -39,6 +39,7 @@ nav ul li a {
   font-weight: bold;
   padding: 8px 12px;
   border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
 nav ul li a:hover,
@@ -59,12 +60,29 @@ header {
   margin: 20px 0;
 }
 
-/* Features / Home */
+/* Features / Home Section */
 .features {
   display: flex;
   gap: 20px;
   justify-content: space-between;
+  flex-wrap: wrap; /* makes it responsive */
 }
 
 .features > div {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  flex: 1 1 30%; /* grow/shrink with a base of ~30% */
+  min-width: 250px; /* prevents it from shrinking too small */
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.features > div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
 
