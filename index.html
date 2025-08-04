@@ -5,136 +5,122 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Book Nest - Home</title>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #fdfdfd;
-      overflow-x: hidden;
-    }
-
-    nav {
-      background-color: #6A4FB6;
-      padding: 1rem 2rem;
-    }
-
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      font-size: 1.05rem;
-    }
-
-    nav a.active,
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    header {
-      text-align: center;
-      padding-bottom: 2rem;
-    }
-
-    .hero-image {
-      width: 100%;
-      max-height: 380px;
-      object-fit: cover;
-    }
-
-    .site-title {
-      font-size: 3rem;
-      color: #4A357E;
-      margin-top: 1rem;
-    }
-
-    .site-tagline {
-      font-size: 1.2rem;
-      color: #555;
-      margin-top: 0.5rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .quote {
-      font-style: italic;
-      color: #6A4FB6;
-      font-size: 1.1rem;
-      margin: 0 1rem 1.5rem 1rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .cta {
-      text-align: center;
-      margin-top: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .cta a {
-      background-color: #4A357E;
-      color: white;
-      padding: 0.8rem 1.5rem;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 1.1rem;
-      transition: background-color 0.3s ease;
-    }
-
-    .cta a:hover {
-      background-color: #372760;
-    }
-
-    @media (max-width: 600px) {
-      .site-title {
-        font-size: 2.2rem;
-      }
-
-      .site-tagline {
-        font-size: 1rem;
-      }
-
-      .quote {
-        font-size: 1rem;
-        margin: 0 1rem 1.2rem 1rem;
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+  <!-- Navigation -->
   <nav>
-    <ul>
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="genres.html">Genres</a></li>
-      <li><a href="books.html">New Books</a></li>
-      <li><a href="browse.html">Browse</a></li>
-      <li><a href="login.html">Sign Up / Login</a></li>
-    </ul>
-  </nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="genres.html">Genres</a></li>
+    <li><a href="books.html">Books</a></li>
+    <li id="accountLink"><a href="login.html">Sign Up / Login</a></li>
+    <li><a href="cart.html">Cart (<span id="cartCount">0</span>)</a></li>
+  </ul>
+</nav>
 
-  <header>
-    <img src="images/library-banner.jpg" alt="Library Banner" class="hero-image" />
-    <h1 class="site-title">📚 Book Nest</h1>
-    <p class="site-tagline">Your cozy place for discovering new stories.</p>
-    <p class="quote">“A room without books is like a body without a soul.” – Marcus Tullius Cicero</p>
-  </header>
 
-  <section class="cta">
-    <a href="browse.html">Browse Our Collection</a>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Book Nest</h1>
+      <p>Your cozy place for discovering new stories & adventures.</p>
+      <button onclick="window.location.href='genres.html'">Browse Books</button>
+    </div>
   </section>
+
+  <!-- About Section -->
+  <section class="about-section">
+    <h2>About Book Nest</h2>
+    <p>
+      At Book Nest, we believe every book opens the door to new adventures, knowledge, and inspiration.
+      Whether you love thrilling mysteries, heartwarming romances, or epic fantasies, our collection is
+      curated to bring stories to life for every reader.
+    </p>
+    <p>
+      Take your time exploring, and let Book Nest become your cozy corner for discovering the perfect read.
+    </p>
+  </section>
+
+  <!-- Slideshow Section -->
+<section class="slideshow-section">
+  <h2>Featured Books</h2>
+  <div class="slideshow-container">
+    <div class="slide fade"><img src="images/browse/book1.jpg" alt="The Long Game"></div>
+    <div class="slide fade"><img src="images/browse/book2.jpg" alt="Children Of Blood and Bone"></div>
+    <div class="slide fade"><img src="images/browse/book3.jpg" alt="Mixed Signals"></div>
+    <div class="slide fade"><img src="images/books/book2/cover.jpg" alt="Harry Potter and The Cursed Child"></div>
+    <div class="slide fade"><img src="images/books/book8/cover.jpg" alt="The Hunger Games"></div>
+    <div class="slide fade"><img src="images/books/book10/cover.jpg" alt="The Hobbit"></div>
+    <div class="slide fade"><img src="images/books/book20/cover.jpg" alt="The Kiss Quotient"></div>
+
+    <!-- Styled arrows -->
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Book Nest. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    let slideIndex = 0;
+    let slideTimer;
+
+    function showSlide(n) {
+      let slides = document.getElementsByClassName("slide");
+      if (n >= slides.length) slideIndex = 0;
+      else if (n < 0) slideIndex = slides.length - 1;
+      else slideIndex = n;
+
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slides[slideIndex].style.display = "block";
+    }
+
+    function nextSlide() {
+      showSlide(slideIndex + 1);
+    }
+
+    function changeSlide(n) {
+      showSlide(slideIndex + n);
+      resetTimer();
+    }
+
+    function startSlideshow() {
+      slideTimer = setInterval(nextSlide, 4000);
+    }
+
+    function resetTimer() {
+      clearInterval(slideTimer);
+      startSlideshow();
+    }
+
+    // Init
+    showSlide(slideIndex);
+    startSlideshow();
+  </script>
+  <script src="cart.js"></script>
+  <script src="auth.js"></script>
+
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
 
 
 

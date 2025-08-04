@@ -6,190 +6,126 @@
   <title>Book Genres - Book Nest</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f9f9f9;
-      margin: 0;
-      padding: 0;
-    }
-    nav {
-      background-color: #6A4FB6;
-      padding: 1rem 2rem;
-      text-align: center;
-    }
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
+    /* Genre container styling */
+    .genre-container {
       display: flex;
-      justify-content: center;
-      gap: 2rem;
       flex-wrap: wrap;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1rem;
-      padding: 0.25rem 0;
-      display: inline-block;
-    }
-    nav a:hover,
-    nav a.active {
-      text-decoration: underline;
-    }
-    h1 {
-      text-align: center;
-      margin: 1rem 0 2rem 0;
-      color: #4A357E;
-    }
-
-    /* Optional search bar for genres */
-    .search-container {
-      max-width: 400px;
-      margin: 0 auto 2rem auto;
-      text-align: center;
-    }
-    .search-container input {
-      width: 100%;
-      padding: 10px 15px;
-      border-radius: 25px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-      box-sizing: border-box;
-      transition: border-color 0.3s ease;
-    }
-    .search-container input:focus {
-      outline: none;
-      border-color: #6A4FB6;
-      box-shadow: 0 0 5px #6A4FB6;
-    }
-
-    .genre-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      padding: 0 2rem 2rem 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .genre-card {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      user-select: none;
-    }
-    .genre-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 15px rgba(106, 79, 182, 0.4);
-    }
-    .genre-card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
-    }
-    .genre-name {
-      padding: 0.75rem;
-      text-align: center;
-      font-weight: 700;
-      font-size: 1.1rem;
-      background: #f0f0f0;
-      flex-grow: 1;
-      display: flex;
-      align-items: center;
+      gap: 20px;
       justify-content: center;
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
+      margin-top: 20px;
     }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-      nav ul {
-        gap: 1rem;
-      }
-      .genre-grid {
-        padding: 0 1rem 1rem 1rem;
-      }
+    .genre-container div {
+      text-align: center;
+      cursor: pointer;
+    }
+    .genre-container img {
+      width: 150px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.2s ease;
+    }
+    .genre-container img:hover {
+      transform: scale(1.05);
+    }
+    .genre-container h3 {
+      margin-top: 8px;
+      font-size: 1.2em;
+      color: #333;
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="genres.html" class="active">Genres</a></li>
-      <li><a href="books.html">New Books</a></li>
-      <li><a href="login.html">Sign Up / Login</a></li>
-    </ul>
-  </nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="genres.html">Genres</a></li>
+    <li><a href="books.html">Books</a></li>
+    <li id="accountLink"><a href="login.html">Sign Up / Login</a></li>
+    <li><a href="cart.html">Cart (<span id="cartCount">0</span>)</a></li>
+  </ul>
+</nav>
 
-  <h1>Browse by Genre</h1>
 
-  <!-- Optional search bar to filter genres -->
-  <div class="search-container">
-    <input type="text" id="genreSearch" placeholder="Search genres..." aria-label="Search genres" />
-  </div>
+  <main>
+    <h1>Browse by Genre</h1>
 
-  <section class="genre-grid" id="genreGrid">
-    <div class="genre-card">
-      <img src="images/genres/mystery.jpg" alt="Mystery" />
-      <div class="genre-name">Mystery</div>
+    <div class="search-container">
+      <input type="text" id="genreSearch" placeholder="Search genres..." aria-label="Search genres" />
     </div>
-    <div class="genre-card">
-      <img src="images/genres/romance.jpg" alt="Romance" />
-      <div class="genre-name">Romance</div>
-    </div>
-    <div class="genre-card">
-      <img src="images/genres/scifi.jpg" alt="Science Fiction" />
-      <div class="genre-name">Sci-Fi</div>
-    </div>
-    <div class="genre-card">
-      <img src="images/genres/fantasy.jpg" alt="Fantasy" />
-      <div class="genre-name">Fantasy</div>
-    </div>
-    <div class="genre-card">
-      <img src="images/genres/nonfiction.jpg" alt="Non-fiction" />
-      <div class="genre-name">Non-Fiction</div>
-    </div>
-    <div class="genre-card">
-      <img src="images/genres/history.jpg" alt="History" />
-      <div class="genre-name">History</div>
-    </div>
-    <div class="genre-card">
-      <img src="images/genres/thriller.jpg" alt="Thriller" />
-      <div class="genre-name">Thriller</div>
-    </div>
-    <div class="genre-card">
-      <img src="images/genres/youngadult.jpg" alt="Young Adult" />
-      <div class="genre-name">Young Adult</div>
-    </div>
-  </section>
 
+    <!-- Genre Cards -->
+    <div class="genre-container" id="genreGrid">
+      <div data-genre="Mystery">
+        <img src="images/genres/mystery.jpg" alt="Mystery">
+        <h3>Mystery</h3>
+      </div>
+      <div data-genre="Romance">
+        <img src="images/genres/romance.jpg" alt="Romance">
+        <h3>Romance</h3>
+      </div>
+      <div data-genre="Sci-Fi">
+        <img src="images/genres/scifi.jpg" alt="Science Fiction">
+        <h3>Sci-Fi</h3>
+      </div>
+      <div data-genre="Fantasy">
+        <img src="images/genres/fantasy.jpg" alt="Fantasy">
+        <h3>Fantasy</h3>
+      </div>
+      <div data-genre="Non-Fiction">
+        <img src="images/genres/nonfiction.jpg" alt="Non-fiction">
+        <h3>Non-Fiction</h3>
+      </div>
+      <div data-genre="History">
+        <img src="images/genres/history.jpg" alt="History">
+        <h3>History</h3>
+      </div>
+      <div data-genre="Thriller">
+        <img src="images/genres/thriller.jpg" alt="Thriller">
+        <h3>Thriller</h3>
+      </div>
+      <div data-genre="Young Adult">
+        <img src="images/genres/youngadult.jpg" alt="Young Adult">
+        <h3>Young Adult</h3>
+      </div>
+    </div>
+  </main>
+
+  <script src="cart.js"></script>
   <script>
-    // Optional: simple genre search filter
+    // Genre search filter
     const searchInput = document.getElementById('genreSearch');
     const genreGrid = document.getElementById('genreGrid');
     searchInput.addEventListener('input', () => {
       const filter = searchInput.value.toLowerCase();
-      const cards = genreGrid.querySelectorAll('.genre-card');
+      const cards = genreGrid.querySelectorAll('div[data-genre]');
       cards.forEach(card => {
-        const genreName = card.querySelector('.genre-name').textContent.toLowerCase();
-        if (genreName.includes(filter)) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
+        const genreName = card.querySelector('h3').textContent.toLowerCase();
+        card.style.display = genreName.includes(filter) ? '' : 'none';
       });
     });
+
+    // Navigate to books page with genre filter
+    document.querySelectorAll('.genre-container div').forEach(card => {
+      card.addEventListener('click', () => {
+        const genre = card.dataset.genre;
+        window.location.href = `books.html?genre=${encodeURIComponent(genre)}`;
+      });
+    });
+
+    // Sync cart count from cart.js
+    document.addEventListener('DOMContentLoaded', updateCartCount);
   </script>
+  <script src="auth.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
 

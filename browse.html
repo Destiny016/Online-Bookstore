@@ -5,357 +5,131 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Browse Books - Book Nest</title>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
-      margin: 0;
-      overflow-x: hidden;
-    }
-
-    nav {
-      background-color: #6A4FB6;
-      padding: 1rem 2rem;
-      text-align: center;
-    }
-
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover,
-    nav a.active {
-      text-decoration: underline;
-    }
-
-    h1 {
-      text-align: center;
-      margin-top: 1rem;
-      color: #4A357E;
-    }
-
-    /* Search bar container */
-    .search-container {
-      max-width: 400px;
-      margin: 1rem auto 2rem auto;
-      text-align: center;
-    }
-
-    .search-container input {
-      width: 100%;
-      padding: 10px 15px;
-      border-radius: 25px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-      box-sizing: border-box;
-      transition: border-color 0.3s ease;
-    }
-
-    .search-container input:focus {
-      outline: none;
-      border-color: #6A4FB6;
-      box-shadow: 0 0 5px #6A4FB6;
-    }
-
-    .book-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
-      padding: 0 2rem 2rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .book {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .book img {
-      max-width: 100%;
-      height: 240px;
-      object-fit: cover;
-      margin-bottom: 1rem;
-      border-radius: 4px;
-    }
-
-    .book-title {
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-      min-height: 48px; /* keep consistent height for titles */
-    }
-
-    .price {
-      color: #6A4FB6;
-      margin-bottom: 1rem;
-    }
-
-    .book button {
-      background-color: #6A4FB6;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      align-self: center;
-      transition: background-color 0.3s ease;
-    }
-
-    .book button:hover {
-      background-color: #503A99;
-    }
-
-    /* Cart sidebar styles */
-    .cart {
-      position: fixed;
-      top: 70px;
-      right: 20px;
-      width: 280px;
-      max-height: 80vh;
-      background: white;
-      border: 1px solid #ddd;
-      box-shadow: 0 0 10px #ccc;
-      padding: 15px;
-      overflow-y: auto;
-      border-radius: 8px;
-      z-index: 1000;
-    }
-
-    .cart h2 {
-      font-size: 1.2rem;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 5px;
-      margin-top: 0;
-    }
-
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .cart-total {
-      font-weight: bold;
-      border-top: 1px solid #ddd;
-      padding-top: 10px;
-      margin-top: 10px;
-      text-align: right;
-    }
-
-    .cart button {
-      background: none;
-      border: none;
-      color: red;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .cart {
-        position: static;
-        width: 100%;
-        max-height: none;
-        margin: 1rem auto;
-        border: none;
-        box-shadow: none;
-        padding: 0;
-      }
-
-      body {
-        padding-bottom: 200px; /* Make room for cart if needed */
-      }
-    }
-  </style>
 </head>
 <body>
 
   <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="genres.html">Genres</a></li>
-      <li><a href="books.html">Books</a></li>
-      <li><a href="browse.html" class="active">Browse</a></li>
-      <li><a href="login.html">Sign Up / Login</a></li>
-    </ul>
-  </nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="genres.html">Genres</a></li>
+    <li><a href="books.html">Books</a></li>
+    <li id="accountLink"><a href="login.html">Sign Up / Login</a></li>
+    <li><a href="cart.html">Cart (<span id="cartCount">0</span>)</a></li>
+  </ul>
+</nav>
 
-  <h1>Browse More Books</h1>
 
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search books..." aria-label="Search books" />
-  </div>
+  <main>
+    <h1 id="pageTitle">Browse Books</h1>
 
-  <section class="book-grid" id="bookGrid">
-    <!-- Books injected by JS -->
-  </section>
+    <div class="search-container">
+      <input type="text" id="bookSearch" placeholder="Search books or genres..." aria-label="Search books" />
+    </div>
 
-  <aside class="cart" id="cart">
-    <h2>Your Cart</h2>
-    <div id="cartItems">Cart is empty.</div>
-    <div class="cart-total" id="cartTotal"></div>
-  </aside>
+    <section class="book-grid" id="bookGrid">
+      <!-- Example books -->
+      <div class="book-card" data-genre="Mystery">
+        <img src="images/books/mystery1.jpg" alt="Mystery Book" />
+        <div class="book-title">The Mysterious Affair</div>
+        <div class="book-genre">Mystery</div>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+      <div class="book-card" data-genre="Romance">
+        <img src="images/books/romance1.jpg" alt="Romance Book" />
+        <div class="book-title">Love in Bloom</div>
+        <div class="book-genre">Romance</div>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+      <div class="book-card" data-genre="Fantasy">
+        <img src="images/books/fantasy1.jpg" alt="Fantasy Book" />
+        <div class="book-title">The Enchanted Realm</div>
+        <div class="book-genre">Fantasy</div>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+    </section>
+  </main>
 
   <script>
-    // Book data, matching your existing browse.html data
-    const books = [
-      { id: 1, title: "The Long Game", price: 11.99, img: "images/browse/book1.jpg" },
-      { id: 2, title: "Children Of Blood and Bone", price: 13.50, img: "images/browse/book2.jpg" },
-      { id: 3, title: "Mixed Signals", price: 9.99, img: "images/browse/book3.jpg" },
-      { id: 4, title: "These Fragil Graces This Fugitive Heart", price: 12.49, img: "images/browse/book4.jpg" },
-      { id: 5, title: "This Was Our Pact", price: 15.00, img: "images/browse/book5.jpg" },
-      { id: 6, title: "The Age of Atlantic Revoution", price: 14.25, img: "images/browse/book6.jpg" },
-      { id: 7, title: "All That She Carried", price: 10.99, img: "images/browse/book7.jpg" },
-      { id: 8, title: "Beatrice's Last Smile", price: 13.75, img: "images/browse/book8.jpg" },
-      { id: 9, title: "The Girl On the Train", price: 16.30, img: "images/browse/book9.jpg" },
-      { id: 10, title: "Lord of the Flies", price: 8.49, img: "images/browse/book10.jpg" }
-    ];
+  const searchInput = document.getElementById('bookSearch');
+  const bookGrid = document.getElementById('bookGrid');
+  const pageTitle = document.getElementById('pageTitle');
 
-    const cart = [];
+  function filterBooks() {
+    const filter = searchInput.value.toLowerCase();
+    const cards = bookGrid.querySelectorAll('.book-card');
+    cards.forEach(card => {
+      const title = card.querySelector('.book-title').textContent.toLowerCase();
+      const genre = card.dataset.genre.toLowerCase();
+      card.style.display = (title.includes(filter) || genre.includes(filter)) ? '' : 'none';
+    });
+  }
 
-    const bookGrid = document.getElementById('bookGrid');
-    const cartItems = document.getElementById('cartItems');
-    const cartTotal = document.getElementById('cartTotal');
-    const searchInput = document.getElementById('searchInput');
+  // Pre-fill search & update title if genre is in URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const genreParam = urlParams.get('genre');
+  if (genreParam) {
+    searchInput.value = genreParam;
+    pageTitle.textContent = `Browsing: ${genreParam} Books`;
+    filterBooks();
+  }
 
-    // Render books to grid, accepts optional filter string
-    function renderBooks(filter = '') {
-      bookGrid.innerHTML = ''; // Clear existing
+  searchInput.addEventListener('input', filterBooks);
 
-      // Filter books by title (case insensitive)
-      const filteredBooks = books.filter(book =>
-        book.title.toLowerCase().includes(filter.toLowerCase())
-      );
+  // Add to cart
+  document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', () => {
+      const card = button.closest('.book-card');
+      const title = card.querySelector('.book-title').textContent;
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-      if (filteredBooks.length === 0) {
-        const noResult = document.createElement('p');
-        noResult.textContent = 'No books found.';
-        noResult.style.textAlign = 'center';
-        noResult.style.gridColumn = '1 / -1';
-        bookGrid.appendChild(noResult);
-        return;
-      }
-
-      filteredBooks.forEach(book => {
-        const bookDiv = document.createElement('div');
-        bookDiv.className = 'book';
-
-        const img = document.createElement('img');
-        img.src = book.img;
-        img.alt = book.title;
-
-        const title = document.createElement('div');
-        title.className = 'book-title';
-        title.textContent = book.title;
-
-        const price = document.createElement('div');
-        price.className = 'price';
-        price.textContent = `$${book.price.toFixed(2)}`;
-
-        const btn = document.createElement('button');
-        btn.textContent = 'Add to Cart';
-        btn.onclick = () => addToCart(book.id);
-
-        bookDiv.appendChild(img);
-        bookDiv.appendChild(title);
-        bookDiv.appendChild(price);
-        bookDiv.appendChild(btn);
-
-        bookGrid.appendChild(bookDiv);
-      });
-    }
-
-    // Add book to cart
-    function addToCart(bookId) {
-      const book = books.find(b => b.id === bookId);
-      if (!book) return;
-
-      const cartItem = cart.find(item => item.id === bookId);
-      if (cartItem) {
-        cartItem.quantity++;
+      const existing = cart.find(item => item.title === title);
+      if (existing) {
+        existing.quantity = (parseInt(existing.quantity) || 0) + 1;
       } else {
-        cart.push({ ...book, quantity: 1 });
-      }
-      renderCart();
-    }
-
-    // Remove book from cart
-    function removeFromCart(bookId) {
-      const index = cart.findIndex(item => item.id === bookId);
-      if (index > -1) {
-        cart.splice(index, 1);
-      }
-      renderCart();
-    }
-
-    // Render cart contents
-    function renderCart() {
-      if (cart.length === 0) {
-        cartItems.textContent = 'Cart is empty.';
-        cartTotal.textContent = '';
-        return;
+        cart.push({ title, quantity: 1 });
       }
 
-      cartItems.innerHTML = '';
-      let total = 0;
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+    });
+  });
 
-      cart.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'cart-item';
-
-        const name = document.createElement('span');
-        name.textContent = `${item.title} x${item.quantity}`;
-
-        const price = document.createElement('span');
-        price.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
-
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = '✕';
-        removeBtn.title = 'Remove from cart';
-        removeBtn.onclick = () => removeFromCart(item.id);
-
-        itemDiv.appendChild(name);
-        itemDiv.appendChild(price);
-        itemDiv.appendChild(removeBtn);
-
-        cartItems.appendChild(itemDiv);
-
-        total += item.price * item.quantity;
-      });
-
-      cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+  // Update cart count safely
+  function updateCartCount() {
+    let cart;
+    try {
+      cart = JSON.parse(localStorage.getItem('cart')) || [];
+      if (!Array.isArray(cart)) throw new Error("Invalid cart data");
+    } catch (e) {
+      // Reset cart if data is corrupted
+      cart = [];
+      localStorage.setItem('cart', JSON.stringify(cart));
     }
 
-    // Search input listener
-    searchInput.addEventListener('input', e => {
-      renderBooks(e.target.value);
+    // Sanitize quantities
+    cart = cart.filter(item => {
+      item.quantity = parseInt(item.quantity);
+      return !isNaN(item.quantity) && item.quantity > 0;
     });
 
-    // Initial render
-    renderBooks();
-  </script>
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('cartCount').textContent = totalItems > 0 ? totalItems : 0;
+
+    // Save back sanitized cart
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  window.addEventListener('load', updateCartCount);
+</script>
+<script src="auth.js"></script>
+
+
 </body>
 </html>
+
+
+
+
+
 
 

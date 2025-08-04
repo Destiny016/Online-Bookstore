@@ -3,196 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Book Nest - New Books</title>
+  <title>Book Nest - Browse Books</title>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9f9f9;
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    nav {
-      background: #6A4FB6;
-      padding: 1rem 2rem;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a.active,
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    main {
-      flex: 1 0 auto;
-      max-width: 1200px;
-      margin: 1.5rem auto 2rem;
-      padding: 0 1rem;
-      width: 100%;
-    }
-
-    h1 {
-      text-align: center;
-      color: #4A357E;
-      margin-bottom: 1rem;
-    }
-
-    /* Search bar styles */
-    #searchBar {
-      display: block;
-      width: 100%;
-      max-width: 400px;
-      margin: 0 auto 2rem;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      border: 2px solid #6A4FB6;
-      border-radius: 6px;
-      outline-offset: 2px;
-      transition: border-color 0.3s;
-    }
-
-    #searchBar:focus {
-      border-color: #503A99;
-    }
-
-    .book-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 1rem;
-    }
-
-    .book-card {
-      background: white;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .book-card img {
-      width: 140px;
-      height: 210px;
-      object-fit: cover;
-      margin-bottom: 10px;
-    }
-
-    .book-title {
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 5px;
-    }
-
-    .book-price {
-      color: #444;
-      margin-bottom: 10px;
-    }
-
-    .add-cart {
-      background: #6A4FB6;
-      color: white;
-      padding: 8px 12px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.95rem;
-      transition: background 0.3s;
-    }
-
-    .add-cart:hover {
-      background: #543aa3;
-    }
-
-    .cart {
-      position: fixed;
-      top: 70px;
-      right: 20px;
-      width: 280px;
-      max-height: 80vh;
-      background: white;
-      border: 1px solid #ddd;
-      box-shadow: 0 0 10px #ccc;
-      padding: 15px;
-      overflow-y: auto;
-      border-radius: 8px;
-      z-index: 100;
-    }
-
-    .cart h2 {
-      font-size: 1.2rem;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 5px;
-      margin-top: 0;
-    }
-
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .cart-total {
-      font-weight: bold;
-      border-top: 1px solid #ddd;
-      padding-top: 10px;
-      margin-top: 10px;
-      text-align: right;
-    }
-
-    .cart button {
-      background: none;
-      border: none;
-      color: red;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-
-    footer {
-      background: #6A4FB6;
-      color: white;
-      text-align: center;
-      padding: 1rem 2rem;
-      flex-shrink: 0;
-    }
-  </style>
 </head>
 <body>
-
+  <!-- Navigation -->
   <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="genres.html">Genres</a></li>
-      <li><a href="books.html" class="active">New Books</a></li>
-      <li><a href="browse.html">Browse</a></li>
-      <li><a href="login.html">Sign Up / Login</a></li>
-    </ul>
-  </nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="genres.html">Genres</a></li>
+    <li><a href="books.html">Books</a></li>
+    <li id="accountLink"><a href="login.html">Sign Up / Login</a></li>
+    <li><a href="cart.html">Cart (<span id="cartCount">0</span>)</a></li>
+  </ul>
+</nav>
 
+
+  <!-- Main Content -->
   <main>
-    <h1>📚 New Books</h1>
+    <h1>📚 Browse Books</h1>
 
+    <!-- Search Bar -->
     <input
       type="search"
       id="searchBar"
@@ -200,162 +31,121 @@
       aria-label="Search books"
     />
 
-    <section class="book-gallery" id="bookGallery">
-      <!-- Book cards will be injected by JS -->
-    </section>
+    <!-- Book Gallery -->
+    <section class="book-gallery" id="bookGallery"></section>
   </main>
 
-  <aside class="cart" id="cart">
-    <h2>Your Cart</h2>
-    <div id="cartItems">Cart is empty.</div>
-    <div class="cart-total" id="cartTotal"></div>
-  </aside>
-
+  <!-- Footer -->
   <footer>
     &copy; 2025 Book Nest. All rights reserved.
   </footer>
 
   <script>
     const books = [
-      { id: 1, title: "The Beloved Girls", price: 15.99 },
-      { id: 2, title: "Harry Potter and The Cursed Child", price: 12.50 },
-      { id: 3, title: "Everything Is Not Peachey", price: 9.99 },
-      { id: 4, title: "James and the Giant Peach", price: 20.00 },
-      { id: 5, title: "The Great Gatsby", price: 8.75 },
-      { id: 6, title: "The Goldfinch", price: 14.00 },
-      { id: 7, title: "1984", price: 17.25 },
-      { id: 8, title: "The Hunger Games", price: 13.50 },
-      { id: 9, title: "The Shadow Cell", price: 7.99 },
-      { id: 10, title: "The Hobbit", price: 19.95 },
-      { id: 11, title: "The Science of Friendship", price: 11.49 },
-      { id: 12, title: "The Shadows of Summer", price: 16.00 },
-      { id: 13, title: "What's Left of Me", price: 18.75 },
-      { id: 14, title: "The Fate of Fausto", price: 10.00 },
-      { id: 15, title: "The God of The Woods", price: 14.99 },
-      { id: 16, title: "The Creative Code", price: 21.00 },
-      { id: 17, title: "The Color Purple", price: 22.50 },
-      { id: 18, title: "Ramona Blue", price: 13.99 },
-      { id: 19, title: "Pride and Prejudice", price: 9.49 },
-      { id: 20, title: "The Kiss Quotient", price: 12.75 }
+      { id: 101, title: "The Long Game", price: 11.99, genre: "Romance", img: "images/browse/book1.jpg" },
+      { id: 102, title: "Children Of Blood and Bone", price: 13.50, genre: "Fantasy", img: "images/browse/book2.jpg" },
+      { id: 103, title: "Mixed Signals", price: 9.99, genre: "Romance", img: "images/browse/book3.jpg" },
+      { id: 104, title: "These Fragil Graces This Fugitive Heart", price: 12.49, genre: "Drama", img: "images/browse/book4.jpg" },
+      { id: 105, title: "This Was Our Pact", price: 15.00, genre: "Children", img: "images/browse/book5.jpg" },
+      { id: 106, title: "The Age of Atlantic Revolution", price: 14.25, genre: "Non-Fiction", img: "images/browse/book6.jpg" },
+      { id: 107, title: "All That She Carried", price: 10.99, genre: "Non-Fiction", img: "images/browse/book7.jpg" },
+      { id: 108, title: "Beatrice's Last Smile", price: 13.75, genre: "Classics", img: "images/browse/book8.jpg" },
+      { id: 109, title: "The Girl On the Train", price: 16.30, genre: "Thriller", img: "images/browse/book9.jpg" },
+      { id: 110, title: "Lord of the Flies", price: 8.49, genre: "Classics", img: "images/browse/book10.jpg" },
+      { id: 1, title: "The Beloved Girls", price: 15.99, genre: "Drama", img: "images/books/book1/cover.jpg" },
+      { id: 2, title: "Harry Potter and The Cursed Child", price: 12.50, genre: "Fantasy", img: "images/books/book2/cover.jpg" },
+      { id: 3, title: "Everything Is Not Peachey", price: 9.99, genre: "Romance", img: "images/books/book3/cover.jpg" },
+      { id: 4, title: "James and the Giant Peach", price: 20.00, genre: "Children", img: "images/books/book4/cover.jpg" },
+      { id: 5, title: "The Great Gatsby", price: 8.75, genre: "Classics", img: "images/books/book5/cover.jpg" },
+      { id: 6, title: "The Goldfinch", price: 14.00, genre: "Drama", img: "images/books/book6/cover.jpg" },
+      { id: 7, title: "1984", price: 17.25, genre: "Dystopian", img: "images/books/book7/cover.jpg" },
+      { id: 8, title: "The Hunger Games", price: 13.50, genre: "Dystopian", img: "images/books/book8/cover.jpg" },
+      { id: 9, title: "The Shadow Cell", price: 7.99, genre: "Thriller", img: "images/books/book9/cover.jpg" },
+      { id: 10, title: "The Hobbit", price: 19.95, genre: "Fantasy", img: "images/books/book10/cover.jpg" },
+      { id: 11, title: "The Science of Friendship", price: 11.49, genre: "Non-Fiction", img: "images/books/book11/cover.jpg" },
+      { id: 12, title: "The Shadows of Summer", price: 16.00, genre: "Mystery", img: "images/books/book12/cover.jpg" },
+      { id: 13, title: "What's Left of Me", price: 18.75, genre: "Drama", img: "images/books/book13/cover.jpg" },
+      { id: 14, title: "The Fate of Fausto", price: 10.00, genre: "Children", img: "images/books/book14/cover.jpg" },
+      { id: 15, title: "The God of The Woods", price: 14.99, genre: "Mystery", img: "images/books/book15/cover.jpg" },
+      { id: 16, title: "The Creative Code", price: 21.00, genre: "Non-Fiction", img: "images/books/book16/cover.jpg" },
+      { id: 17, title: "The Color Purple", price: 22.50, genre: "Classics", img: "images/books/book17/cover.jpg" },
+      { id: 18, title: "Ramona Blue", price: 13.99, genre: "Romance", img: "images/books/book18/cover.jpg" },
+      { id: 19, title: "Pride and Prejudice", price: 9.49, genre: "Classics", img: "images/books/book19/cover.jpg" },
+      { id: 20, title: "The Kiss Quotient", price: 12.75, genre: "Romance", img: "images/books/book20/cover.jpg" }
     ];
 
-    const cart = [];
-
     const bookGallery = document.getElementById('bookGallery');
-    const cartItems = document.getElementById('cartItems');
-    const cartTotal = document.getElementById('cartTotal');
     const searchBar = document.getElementById('searchBar');
 
-    // Render all books initially
-    function renderBooks(filter = '') {
+    function getGenreFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('genre') || '';
+    }
+
+    function renderBooks(filter = '', genre = '') {
       bookGallery.innerHTML = '';
       const filteredBooks = books.filter(book =>
-        book.title.toLowerCase().includes(filter.toLowerCase())
+        book.title.toLowerCase().includes(filter.toLowerCase()) &&
+        (genre ? book.genre.toLowerCase() === genre.toLowerCase() : true)
       );
 
       if (filteredBooks.length === 0) {
-        bookGallery.innerHTML = '<p style="text-align:center; width:100%;">No books found.</p>';
+        bookGallery.innerHTML = '<p class="no-results">No books found.</p>';
         return;
       }
 
       filteredBooks.forEach(book => {
         const bookCard = document.createElement('div');
         bookCard.className = 'book-card';
-
-        const img = document.createElement('img');
-        img.src = `images/books/book${book.id}/cover.jpg`;
-        img.alt = book.title;
-
-        const title = document.createElement('div');
-        title.className = 'book-title';
-        title.textContent = book.title;
-
-        const price = document.createElement('div');
-        price.className = 'book-price';
-        price.textContent = `$${book.price.toFixed(2)}`;
-
-        const btn = document.createElement('button');
-        btn.className = 'add-cart';
-        btn.textContent = 'Add to Cart';
-        btn.onclick = () => addToCart(book.id);
-
-        bookCard.appendChild(img);
-        bookCard.appendChild(title);
-        bookCard.appendChild(price);
-        bookCard.appendChild(btn);
-
+        bookCard.innerHTML = `
+          <img src="${book.img}" alt="${book.title}">
+          <div class="book-title">${book.title}</div>
+          <div class="book-price">$${book.price.toFixed(2)}</div>
+          <button class="add-cart" data-id="${book.id}">Add to Cart</button>
+        `;
         bookGallery.appendChild(bookCard);
+      });
+
+      document.querySelectorAll('.add-cart').forEach(button => {
+        button.addEventListener('click', () => addToCart(parseInt(button.dataset.id)));
       });
     }
 
     function addToCart(bookId) {
       const book = books.find(b => b.id === bookId);
       if (!book) return;
-
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
       const cartItem = cart.find(item => item.id === bookId);
-      if (cartItem) {
-        cartItem.quantity++;
-      } else {
-        cart.push({ ...book, quantity: 1 });
-      }
-      renderCart();
+      if (cartItem) cartItem.quantity++;
+      else cart.push({ ...book, quantity: 1 });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
     }
 
-    function removeFromCart(bookId) {
-      const index = cart.findIndex(item => item.id === bookId);
-      if (index > -1) {
-        cart.splice(index, 1);
-      }
-      renderCart();
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById('cartCount').textContent = totalItems;
     }
 
-    function renderCart() {
-      if (cart.length === 0) {
-        cartItems.textContent = 'Cart is empty.';
-        cartTotal.textContent = '';
-        return;
-      }
+    searchBar.addEventListener('input', e => renderBooks(e.target.value, getGenreFromUrl()));
 
-      cartItems.innerHTML = '';
-      let total = 0;
-
-      cart.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'cart-item';
-
-        const name = document.createElement('span');
-        name.textContent = `${item.title} x${item.quantity}`;
-
-        const price = document.createElement('span');
-        price.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
-
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = '✕';
-        removeBtn.title = 'Remove from cart';
-        removeBtn.onclick = () => removeFromCart(item.id);
-
-        itemDiv.appendChild(name);
-        itemDiv.appendChild(price);
-        itemDiv.appendChild(removeBtn);
-
-        cartItems.appendChild(itemDiv);
-
-        total += item.price * item.quantity;
-      });
-
-      cartTotal.textContent = `Total: $${total.toFixed(2)}`;
-    }
-
-    // Event listener for search input
-    searchBar.addEventListener('input', e => {
-      renderBooks(e.target.value);
+    window.addEventListener('load', () => {
+      updateCartCount();
+      renderBooks('', getGenreFromUrl());
     });
-
-    // Initial render
-    renderBooks();
   </script>
+  <script src="auth.js"></script>
+
 </body>
 </html>
+
+
+
+
+
+
+
 
 
 
